@@ -1,0 +1,25 @@
+{
+  "name": "asset-management",
+  "version": "1.0.0",
+  "description": "An application to manage the technology based assets of a company. For now it will be tied to Mongo but may be changed to postGres later. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verhoefd1/Asset-Management.git"
+  },
+  "keywords": [
+    "asset",
+    "management",
+    "tracking",
+    "purchasing"
+  ],
+  "author": "Dylan Verhoef",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/verhoefd1/Asset-Management/issues"
+  },
+  "homepage": "https://github.com/verhoefd1/Asset-Management#readme"
+}
