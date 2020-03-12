@@ -21,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/verhoefd1/Asset-Management/issues"
   },
-  "homepage": "https://github.com/verhoefd1/Asset-Management#readme"
+  "homepage": "https://github.com/verhoefd1/Asset-Management#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.4",
+    "request": "^2.88.2"
+  }
 }
