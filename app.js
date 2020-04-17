@@ -5,12 +5,16 @@ app				= express(),
 //REST API - express is the framework to use REST API with Node
 mongoose		= require("mongoose"),
 //Mongoose interacts with MongoDB
+Asset 			= require("./models/assets.js"),
+//links up model for assets
+//seedDB 			= require("./seeds"),
+//links up seed model filling db
 port 			= 8080;
 //sets listening port for site. 
 
 app.use(express.static(__dirname + "/public"));
 //serves all files in public directly to / 
-mongoose.connect("mongodb://localhost/assetManagement");
+mongoose.connect("mongodb://localhost/assetManagement", {useNewUrlParser: true});
 //Connects with database
 app.set("views",__dirname + "/views/");
 app.set("view engine", "ejs");
@@ -28,6 +32,17 @@ app.get("/assets", function(req, res){
 //new - new asset form
 app.get("/assets/new", function(req, res){
 	res.render("assets/new");
+});
+
+//Reporting Page
+app.get("/assets/reports", function(req, res){
+	Asset.find({}).sort('category').exec(function(err, allAssets){
+		if(err){
+			console.log(err);
+		} else {
+			res.render("assets/reports", {assets:allAssets, currentUser:req.user, page: 'repots'});
+		}
+	});
 });
 
 //add - submit new asset
@@ -65,7 +80,7 @@ app.post("/assets", function(req, res){
 
 //show - show selected asset
 app.get("/assets/:asset_id", function(req, res){
-	Asset:findById(req.params.asset_id).exec(function(err, foundAsset){
+	Asset.findById(req.params.asset_id).exec(function(err, foundAsset){
 		if(err){
 			console.log(err);
 		} else {
@@ -76,10 +91,37 @@ app.get("/assets/:asset_id", function(req, res){
 });
 
 //edit - edit selected asset
+app.get("/assets/:asset_id/edit", function(req, res){
+	Asset.findById(req.params.asset_id, function(err, foundAsset){
+		if(err){
+			console.log(err);
+		} else { 
+			console.log(foundAsset);
+			res.render("assets/edit", {asset: foundAsset, page: 'edit'});
+		}
+	});
+});
 
 //update - update selected asset
+app.put("/assets/:asset_id", function(req, res){
+	Asset.findByIdAndUpdate(req.params.asset_id, req.body.asset, function(err){
+		if(err){
+			console.log(err);
+		} else {
+			res.redirect("/assets/" + req.params.asset_id);
+		}
+	});
+});
 
 //delete - delete selected asset
+app.delete("/assets/:asset_id", function(req, res){
+	Asset.findByIdAndDelete(req.params.asset_id, function(err){
+		if(err){
+			console.log(err);
+		} else {res.redirect("/assets")}
+	});
+});
+
 
 app.listen(port, function(){
 	console.log("Asset Management Application listening on: " + port);
