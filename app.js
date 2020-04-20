@@ -7,7 +7,7 @@ mongoose		= require("mongoose"),
 //Mongoose interacts with MongoDB
 Asset 			= require("./models/assets.js"),
 //links up model for assets
-//seedDB 			= require("./seeds"),
+seedDB 			= require("./seeds"),
 //links up seed model filling db
 port 			= 8080;
 //sets listening port for site. 
@@ -20,8 +20,16 @@ app.set("views",__dirname + "/views/");
 app.set("view engine", "ejs");
 //adds the middleware to all the routes without explicitly adding it. 
 
+//seeds database for testing
+seedDB();
 app.get("/", function(req, res){
-	res.render("index");
+	Asset.find({}).sort('category').exec(function(err, allAssets){
+		if(err){
+			console.log(err);
+		} else {
+			res.render("index", {assets:allAssets, currentUser:req.user, page: 'repots'});
+		}
+	});
 });
 
 //list - page to list all assets and to sort by category, warranty expiration, age etc...

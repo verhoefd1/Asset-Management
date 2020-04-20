@@ -1,5 +1,12 @@
 <%- include('../partials/header.ejs') %>
 
-
+<% assets.forEach(function(asset){ %>
+	<h1>Asset Name <%=asset.asset_name%></h1>
+	<h3>Asset Make <%=asset.make%></h3>
+	<h3>Asset Model <%=asset.model%></h3> 
+	<h3>Asset Warranty Expiration <%=asset.warranty_exp%></h3> 
+	<h3><%= Date.parse(asset.warranty_exp);%></h3>
+	<h3><%= Date.now();%></h3>
+<%	}); %>
 
 <%- include('../partials/footer.ejs') %>
