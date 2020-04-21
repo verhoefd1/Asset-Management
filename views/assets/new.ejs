@@ -2,7 +2,7 @@
 	<div>
         <h1 style="text-align: center;">Add a new Asset</h1>
         <div style="width: 60%; margin:45px auto;">
-            <!--sets form up to send a post back through the server under /campgrounds-->
+            <!--sets form up to send a post back through the server under /assets-->
             <form action="/assets" method="POST">
                 <div class="form-row">
                 	<div class="col">
@@ -58,6 +58,8 @@
                 	</div>
                 </div>
                 <br>
+                <hr>
+                <br>
                 <div class="row">
                 	<div class="col">
                 		<label for="make">Make</label>
@@ -91,6 +93,8 @@
                 	</div>
           		</div>
                 <br>
+                <hr>
+                <br>
                 <div class="row">
                 	<div class="col">
                 		<label for="condition">Describe the Device Condition</label>
@@ -100,14 +104,13 @@
                 <br>
                 <div class="row">
                 	<div class="col">
-                		<label for="description"></label>
-                		<textarea class="form-control" type="text" name="description" placeholder="Good - Has some slight wear signs on the keys and touch pad but works as expected"></textarea>
+                		<label for="description">Description and Notes</label>
+                		<textarea class="form-control" type="text" name="description" placeholder="Controller for CW Network or Floating computer for marketing or replaced Hard drive with SSD added more RAM"></textarea>
                 	</div>
                 </div>
 
-
-
-
+                <br>
+                <hr>
                 <br>
                 <button type="Submit" class="btn btn-primary">Submit</button> 
                 <button type="Reset" class="btn btn-warning">Reset</button>

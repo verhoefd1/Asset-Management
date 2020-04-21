@@ -1,5 +1,14 @@
 <%- include('../partials/header.ejs') %>
+<br>
+	<% assets.forEach(function(asset){%>
+		<div class="container">
+			<h5><%=asset.category%></h5>
+			<p><strong>Name:</strong> <%=asset.asset_name%> - <strong>Asset Owner:</strong> <%=asset.owner%></p>
+			<p><strong>Device: </strong><%=asset.make%> <%=asset.model%></p>
+			<p><strong>Date Deployed:</strong> <%=asset.date_deployed%>  |  <strong>Warranty Expiration:</strong> <%=asset.warranty_exp%></p>
 
-
-
+			<a href="/assets/<%=asset._id%>"><button class="btn btn-warning">Edit</button></a>
+			<hr>
+		</div>
+	<%});%>
 <%- include('../partials/footer.ejs')%>

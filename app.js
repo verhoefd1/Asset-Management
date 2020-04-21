@@ -5,6 +5,7 @@ app				= express(),
 //REST API - express is the framework to use REST API with Node
 mongoose		= require("mongoose"),
 //Mongoose interacts with MongoDB
+bodyParser		= require("body-parser"),
 Asset 			= require("./models/assets.js"),
 //links up model for assets
 seedDB 			= require("./seeds"),
@@ -16,6 +17,8 @@ app.use(express.static(__dirname + "/public"));
 //serves all files in public directly to / 
 mongoose.connect("mongodb://localhost/assetManagement", {useNewUrlParser: true});
 //Connects with database
+app.use(bodyParser.urlencoded({extended: true}));
+//creates middleware link with BodyParser
 app.set("views",__dirname + "/views/");
 app.set("view engine", "ejs");
 //adds the middleware to all the routes without explicitly adding it. 
@@ -34,7 +37,13 @@ app.get("/", function(req, res){
 
 //list - page to list all assets and to sort by category, warranty expiration, age etc...
 app.get("/assets", function(req, res){
-	res.render("assets/assets");
+	Asset.find({}).sort('category').exec(function(err, allAssets){
+		if(err){
+			console.log(err);
+		} else {
+			res.render("assets/assets", {assets:allAssets, currentUser:req.user, page: 'assets'});
+		}
+	});
 });
 
 //new - new asset form
@@ -56,21 +65,22 @@ app.get("/assets/reports", function(req, res){
 //add - submit new asset
 app.post("/assets", function(req, res){
 	//pass in assets
-	category		= req.body.category;		
-	asset_tag		= req.body.asset_tag;		
-	service_tag		= req.body.service_tag;		
-	asset_name		= req.body.asset_name;		
-	owner			= req.body.owner;			 
-	serial			= req.body.serial;			
-	make			= req.body.make;			 
-	model			= req.body.model;			 
-	asset_cost		= req.body.asset_cost;		
-	date_purhased	= req.body.date_purhased;	
-	date_deployed	= req.body.date_deployed;	
-	warranty_exp	= req.body.warranty_exp;	
-	condition		= req.body.condition;		
-	description		= req.body.description;
-	var newAsset	= {category:category, asset_tag:asset_tag, service_tag:service_tag, 
+	var 
+	category		= req.body.category,		
+	asset_tag		= req.body.asset_tag,		
+	service_tag		= req.body.service_tag,		
+	asset_name		= req.body.asset_name,		
+	owner			= req.body.owner,			 
+	serial			= req.body.serial,			
+	make			= req.body.make,			 
+	model			= req.body.model,			 
+	asset_cost		= req.body.asset_cost,		
+	date_purhased	= req.body.date_purhased,	
+	date_deployed	= req.body.date_deployed,	
+	warranty_exp	= req.body.warranty_exp,	
+	condition		= req.body.condition,		
+	description		= req.body.description,
+	newAsset		= {category:category, asset_tag:asset_tag, service_tag:service_tag, 
 		asset_name:asset_name, owner:owner, serial:serial, make:make, model:model, 
 		asset_cost:asset_cost, date_purhased:date_purhased, date_deployed:date_deployed, 
 		warranty_exp:warranty_exp, condition:

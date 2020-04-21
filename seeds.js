@@ -3,7 +3,7 @@ Asset			= require("./models/assets");
 
 var data = [
 	{
-		category: "Laptop",
+		category: "Computer - Laptop",
 		asset_tag: "445928",
 		service_tag: "DJCI39481",
 		asset_name: "pvt-aksdflk-2349-djv",
