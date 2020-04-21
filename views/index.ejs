@@ -1,4 +1,12 @@
-<%- include('./partials/header.ejs') %>
+<%- include('./partials/header.ejs')%>
+<%var currentDate = new Date();%>
+<%var fiveYearsOld = currentDate.setFullYear(currentDate.getFullYear() - 5);%>
+<%Date.prototype.formatMMDDYYYY = function(){
+    return (this.getMonth() + 1) + 
+    "/" +  this.getDate() +
+    "/" +  this.getFullYear();
+}%>
+
 
 	<div class="container-fluid">
 		<div class="jumbotron">
@@ -8,8 +16,8 @@
 			<div class="col-md graybox">
 				<h4 class="text-center">Expired Warranties</h4>
 				<ul>
-					<% assets.forEach(function(asset){%> 
-						<%if(Date.parse(asset.warranty_exp)<=Date.now()){ %>
+					<% assets.forEach(function(asset){%>
+						<%if(Date.parse(asset.warranty_exp) <= Date.now()){ %>
 						<li>
 							<p><%=asset.asset_name%>  |  <%=asset.warranty_exp%><a href="assets/<%=asset._id%>"><button class="btn btn-info btn-sm float-right">Check Out</button></a></p>
 						</li>	
@@ -19,6 +27,15 @@
 			</div>
 			<div class="col-md graybox">
 				<h4 class="text-center">Devices over 5 years old</h4>
+				<ul>
+					<% assets.forEach(function(asset){%> 
+						<%if(fiveYearsOld >= asset.date_deployed){ %>
+						<li>
+							<p><%=asset.asset_name%>  |  <%=asset.date_deployed%><a href="assets/<%=asset._id%>"><button class="btn btn-info btn-sm float-right">Check Out</button></a></p>
+						</li>
+						<%}%>
+					<%});%>
+				</ul>
 			</div>
 		</div>
 		<div class="row">

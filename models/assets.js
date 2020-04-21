@@ -13,7 +13,7 @@ var assetSchema = new mongoose.Schema({
 	asset_cost: Number,
 	date_purhased: Date,
 	date_deployed: Date,
-	warranty_exp: String,
+	warranty_exp: Date,
 	condition: String,
 	description: String
 });

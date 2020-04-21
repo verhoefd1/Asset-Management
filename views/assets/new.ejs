@@ -1,5 +1,120 @@
 <%- include ('../partials/header.ejs')%>
+	<div>
+        <h1 style="text-align: center;">Add a new Asset</h1>
+        <div style="width: 60%; margin:45px auto;">
+            <!--sets form up to send a post back through the server under /campgrounds-->
+            <form action="/assets" method="POST">
+                <div class="form-row">
+                	<div class="col">
+	                	<label for="category">Category</label>
+	                    <select class="form-control" type="text" name="category" placeholder="Category">
+	                    	<option value="Computer - Desktop">Computer - Desktop</option>
+	                    	<option value="Computer - Laptop">Computer - Laptop</option>
+	                    	<option value="Computer - Micro">Computer - Micro</option>
+	                    	<option value="Computer - Server">Computer - Server</option>
+	                    	<option value="Computer - Chromecast">Computer - Chromecast</option>
+	                    	<option value="Peripheral - Monitor">Peripheral - Monitor</option>
+	                    	<option value="Peripheral - Keyboard">Peripheral - Keyboard</option>
+	                    	<option value="Peripheral - Speakers">Peripheral - Speakers</option>
+	                    	<option value="Peripheral - Television">Peripheral - Television</option>
+	                    	<option value="Communication - Desktop Phone">Communication - Desktop Phone</option>
+	                    	<option value="Communication - Mobile Phone">Communication - Mobile Phone</option>
+	                    	<option value="Network - Switch">Network - Switch</option>
+	                    	<option value="Network - Controller">Network - Controller</option>
+	                    	<option value="Network - Access Point">Network - Access Point</option>
+	                    	<option value="Network - Firewall">Network - Firewall</option>
+	                    	<option value="Network - Patch Panel">Network - Patch Panel</option>
+	                    	<option value="Network - Modem">Network - Modem</option>
+	                    </select>
+	                </div>
+                </div>
+                <br>
+                <div class="form-row">
+                	<div class="col">
+	                	<label for="asset_tag">Asset Tag</label>
+	                	<input class="form-control" type="text" name="asset_tag" placeholder="00123">
+	                </div>
+	                <div class="col">
+	                	<label for="service_tag">Service Tag</label>
+	                	<input class="form-control" type="text" name="service_tag" placeholder="DJV12304T">
+	                </div>
+                </div>
+                <br>
+                <div class="form-row">
+                	<div class="col">
+                		<label for="serial">Serial Number</label>
+                		<input type="text" name="serial" class="form-control" placeholder="122019837129048">
+                	</div>
+                </div>
+                <br>
+                <div class="row">
+                	<div class="col">
+                		<label for="asset_name">Asset Name</label>
+                		<input class="form-control" type="text" name="asset_name" placeholder="wdbac-sc-dt-o - See example">
+                	</div>
+                	<div class="col">
+                		<label for="owner">Owner | User | Caretaker</label>
+                		<input class="form-control" type="text" name="owner" placeholder="Last Name, First Name">
+                	</div>
+                </div>
+                <br>
+                <div class="row">
+                	<div class="col">
+                		<label for="make">Make</label>
+                		<input class="form-control" type="text" name="make" placeholder="Dell">
+                	</div>
+                	<div class="col">
+                		<label for="model">Model</label>
+                		<input class="form-control" type="text" name="model" placeholder="XPS 13">
+                	</div>
+                </div>
+                <br>
+                <div class="row">
+                	<div class="col">
+                		<label for="asset_cost">Purchase Cost - USD</label>
+                		<input class="form-control" type="number" name="asset_cost" placeholder="1400.57">
+                	</div>
+                </div>
+                <br>
+          		<div class="row">
+          			<div class="col">
+                		<label for="date_purchased">Date Purchased</label>
+                		<input class="form-control" type="date" name="date_purchased" placeholder="Date Purchased">
+                	</div>
+                	<div class="col">
+                		<label for="date_deployed">Date Deployed</label>
+                		<input class="form-control" type="date" name="date_deployed" placeholder="Date Deployed">
+                	</div>
+                	<div class="col">
+                		<label for="warranty_exp">Warranty Expiration</label>
+                		<input class="form-control" type="date" name="warranty_exp" placeholder="Warranty Expiration Date">
+                	</div>
+          		</div>
+                <br>
+                <div class="row">
+                	<div class="col">
+                		<label for="condition">Describe the Device Condition</label>
+                		<textarea class="form-control" type="text" name="condition" placeholder="Good - Has some slight wear signs on the keys and touch pad but works as expected"></textarea>
+                	</div>
+                </div>
+                <br>
+                <div class="row">
+                	<div class="col">
+                		<label for="description"></label>
+                		<textarea class="form-control" type="text" name="description" placeholder="Good - Has some slight wear signs on the keys and touch pad but works as expected"></textarea>
+                	</div>
+                </div>
 
-<h2>Hello world</h2>
+
+
+
+                <br>
+                <button type="Submit" class="btn btn-primary">Submit</button> 
+                <button type="Reset" class="btn btn-warning">Reset</button>
+            </form>
+            <br>
+            <a href="/tenants">Back</a>
+        </div>
+    </div>
 
 <%- include ('../partials/footer.ejs')%>
